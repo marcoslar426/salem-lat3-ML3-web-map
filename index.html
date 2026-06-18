@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -37,15 +38,17 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
+        <script src="js/leaflet-measure.js"></script>
         <script src="data/ProposedConcreteStructures_1.js"></script>
         <script src="data/ProposedPipeline_2.js"></script>
         <script src="data/AbandonedPipeline_3.js"></script>
-        <script src="data/Workspace_4.js"></script>
-        <script src="data/WELLPADS_5.js"></script>
+        <script src="data/MASTERSPREADSHEETmacroenabledCURRENT_4.js"></script>
+        <script src="data/Workspace_5.js"></script>
+        <script src="data/WELLPADS_6.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.72460148729286,-85.82456175861805],[42.72941392941607,-85.81470658573014]]);
+        }).fitBounds([[42.72157821076882,-85.82923248465417],[42.73120309501525,-85.80952213887835]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -114,6 +117,16 @@
             position: 'topleft'
         }).addTo(map);
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'feet',
+            secondaryLengthUnit: 'miles',
+            primaryAreaUnit: 'sqfeet',
+            secondaryAreaUnit: 'sqmiles'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -342,7 +355,98 @@
         });
         bounds_group.addLayer(layer_AbandonedPipeline_3);
         map.addLayer(layer_AbandonedPipeline_3);
-        function pop_Workspace_4(feature, layer) {
+        function pop_MASTERSPREADSHEETmacroenabledCURRENT_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COMMENTS'] !== null ? autolinker.link(String(feature.properties['COMMENTS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WELD_NUM'] !== null ? autolinker.link(String(feature.properties['WELD_NUM']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LINE_NAME'] !== null ? autolinker.link(String(feature.properties['LINE_NAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2D_STATION'] !== null ? autolinker.link(String(feature.properties['2D_STATION']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POINT_NUMBER'] !== null ? autolinker.link(String(feature.properties['POINT_NUMBER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HEAT_NUM_AHEAD'] !== null ? autolinker.link(String(feature.properties['HEAT_NUM_AHEAD']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SEAM_ORIENTATION_CLOCK'] !== null ? autolinker.link(String(feature.properties['SEAM_ORIENTATION_CLOCK']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FINAL_GRADE_COVER'] !== null ? autolinker.link(String(feature.properties['FINAL_GRADE_COVER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MANUFACTURER'] !== null ? autolinker.link(String(feature.properties['MANUFACTURER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DIAMETER'] !== null ? autolinker.link(String(feature.properties['DIAMETER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAT'] !== null ? autolinker.link(String(feature.properties['LAT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONG'] !== null ? autolinker.link(String(feature.properties['LONG']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATUS'] !== null ? autolinker.link(String(feature.properties['STATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PHOTO'] !== null ? autolinker.link(String(feature.properties['PHOTO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MTRs'] !== null ? autolinker.link(String(feature.properties['MTRs']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_MASTERSPREADSHEETmacroenabledCURRENT_4_0() {
+            return {
+                pane: 'pane_MASTERSPREADSHEETmacroenabledCURRENT_4',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(61,128,53,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,176,74,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_MASTERSPREADSHEETmacroenabledCURRENT_4');
+        map.getPane('pane_MASTERSPREADSHEETmacroenabledCURRENT_4').style.zIndex = 404;
+        map.getPane('pane_MASTERSPREADSHEETmacroenabledCURRENT_4').style['mix-blend-mode'] = 'normal';
+        var layer_MASTERSPREADSHEETmacroenabledCURRENT_4 = new L.geoJson(json_MASTERSPREADSHEETmacroenabledCURRENT_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_MASTERSPREADSHEETmacroenabledCURRENT_4',
+            layerName: 'layer_MASTERSPREADSHEETmacroenabledCURRENT_4',
+            pane: 'pane_MASTERSPREADSHEETmacroenabledCURRENT_4',
+            onEachFeature: pop_MASTERSPREADSHEETmacroenabledCURRENT_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_MASTERSPREADSHEETmacroenabledCURRENT_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_MASTERSPREADSHEETmacroenabledCURRENT_4);
+        map.addLayer(layer_MASTERSPREADSHEETmacroenabledCURRENT_4);
+        function pop_Workspace_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -385,9 +489,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Workspace_4_0() {
+        function style_Workspace_5_0() {
             return {
-                pane: 'pane_Workspace_4',
+                pane: 'pane_Workspace_5',
                 opacity: 1,
                 color: 'rgba(239,251,65,1.0)',
                 dashArray: '',
@@ -398,21 +502,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Workspace_4');
-        map.getPane('pane_Workspace_4').style.zIndex = 404;
-        map.getPane('pane_Workspace_4').style['mix-blend-mode'] = 'normal';
-        var layer_Workspace_4 = new L.geoJson(json_Workspace_4, {
+        map.createPane('pane_Workspace_5');
+        map.getPane('pane_Workspace_5').style.zIndex = 405;
+        map.getPane('pane_Workspace_5').style['mix-blend-mode'] = 'normal';
+        var layer_Workspace_5 = new L.geoJson(json_Workspace_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Workspace_4',
-            layerName: 'layer_Workspace_4',
-            pane: 'pane_Workspace_4',
-            onEachFeature: pop_Workspace_4,
-            style: style_Workspace_4_0,
+            dataVar: 'json_Workspace_5',
+            layerName: 'layer_Workspace_5',
+            pane: 'pane_Workspace_5',
+            onEachFeature: pop_Workspace_5,
+            style: style_Workspace_5_0,
         });
-        bounds_group.addLayer(layer_Workspace_4);
-        map.addLayer(layer_Workspace_4);
-        function pop_WELLPADS_5(feature, layer) {
+        bounds_group.addLayer(layer_Workspace_5);
+        map.addLayer(layer_Workspace_5);
+        function pop_WELLPADS_6(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -432,9 +536,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_WELLPADS_5_0() {
+        function style_WELLPADS_6_0() {
             return {
-                pane: 'pane_WELLPADS_5',
+                pane: 'pane_WELLPADS_6',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -448,29 +552,30 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_WELLPADS_5');
-        map.getPane('pane_WELLPADS_5').style.zIndex = 405;
-        map.getPane('pane_WELLPADS_5').style['mix-blend-mode'] = 'normal';
-        var layer_WELLPADS_5 = new L.geoJson(json_WELLPADS_5, {
+        map.createPane('pane_WELLPADS_6');
+        map.getPane('pane_WELLPADS_6').style.zIndex = 406;
+        map.getPane('pane_WELLPADS_6').style['mix-blend-mode'] = 'normal';
+        var layer_WELLPADS_6 = new L.geoJson(json_WELLPADS_6, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_WELLPADS_5',
-            layerName: 'layer_WELLPADS_5',
-            pane: 'pane_WELLPADS_5',
-            onEachFeature: pop_WELLPADS_5,
+            dataVar: 'json_WELLPADS_6',
+            layerName: 'layer_WELLPADS_6',
+            pane: 'pane_WELLPADS_6',
+            onEachFeature: pop_WELLPADS_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_WELLPADS_5_0(feature));
+                return L.circleMarker(latlng, style_WELLPADS_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_WELLPADS_5);
-        map.addLayer(layer_WELLPADS_5);
+        bounds_group.addLayer(layer_WELLPADS_6);
+        map.addLayer(layer_WELLPADS_6);
         var overlaysTree = [
-            {label: '<img src="legend/WELLPADS_5.png" /> WELL PADS', layer: layer_WELLPADS_5},
-            {label: '<img src="legend/Workspace_4.png" /> Workspace', layer: layer_Workspace_4},
+            {label: '<img src="legend/WELLPADS_6.png" /> WELL PADS', layer: layer_WELLPADS_6},
+            {label: '<img src="legend/Workspace_5.png" /> Workspace', layer: layer_Workspace_5},
+            {label: '<img src="legend/MASTERSPREADSHEETmacroenabledCURRENT_4.png" /> MASTER SPREADSHEET macro enabled CURRENT', layer: layer_MASTERSPREADSHEETmacroenabledCURRENT_4},
             {label: '<img src="legend/AbandonedPipeline_3.png" /> Abandoned Pipeline', layer: layer_AbandonedPipeline_3},
             {label: '<img src="legend/ProposedPipeline_2.png" /> Proposed Pipeline', layer: layer_ProposedPipeline_2},
             {label: '<img src="legend/ProposedConcreteStructures_1.png" /> Proposed Concrete Structures', layer: layer_ProposedConcreteStructures_1},
@@ -537,27 +642,40 @@
         });       
         setBounds();
         var i = 0;
-        layer_WELLPADS_5.eachLayer(function(layer) {
+        layer_MASTERSPREADSHEETmacroenabledCURRENT_4.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['WELL NAME'] !== null?String('<div style="color: #050404; font-size: 15pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELL NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WELLPADS_5'});
+            layer.bindTooltip((layer.feature.properties['WELD_NUM'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELD_NUM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_MASTERSPREADSHEETmacroenabledCURRENT_4'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_WELLPADS_5]);
+        var i = 0;
+        layer_WELLPADS_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['WELL NAME'] !== null?String('<div style="color: #050404; font-size: 15pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELL NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WELLPADS_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_MASTERSPREADSHEETmacroenabledCURRENT_4,layer_WELLPADS_6]);
         map.on("zoomend", function(){
-            resetLabels([layer_WELLPADS_5]);
+            resetLabels([layer_MASTERSPREADSHEETmacroenabledCURRENT_4,layer_WELLPADS_6]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_WELLPADS_5]);
+            resetLabels([layer_MASTERSPREADSHEETmacroenabledCURRENT_4,layer_WELLPADS_6]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_WELLPADS_5]);
+            resetLabels([layer_MASTERSPREADSHEETmacroenabledCURRENT_4,layer_WELLPADS_6]);
         });
         </script>        
     </body>
