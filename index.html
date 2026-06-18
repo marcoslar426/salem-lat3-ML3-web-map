@@ -37,14 +37,15 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
-        <script src="data/Concrete_1.js"></script>
+        <script src="data/ProposedConcreteStructures_1.js"></script>
         <script src="data/ProposedPipeline_2.js"></script>
         <script src="data/AbandonedPipeline_3.js"></script>
         <script src="data/Workspace_4.js"></script>
+        <script src="data/WELLPADS_5.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.72482123278924,-85.82471176233534],[42.73000847648676,-85.81485658944015]]);
+        }).fitBounds([[42.72460148729286,-85.82456175861805],[42.72941392941607,-85.81470658573014]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -129,7 +130,7 @@
         });
         layer_ESRISatellite_0;
         map.addLayer(layer_ESRISatellite_0);
-        function pop_Concrete_1(feature, layer) {
+        function pop_ProposedConcreteStructures_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -172,9 +173,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Concrete_1_0() {
+        function style_ProposedConcreteStructures_1_0() {
             return {
-                pane: 'pane_Concrete_1',
+                pane: 'pane_ProposedConcreteStructures_1',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -187,20 +188,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Concrete_1');
-        map.getPane('pane_Concrete_1').style.zIndex = 401;
-        map.getPane('pane_Concrete_1').style['mix-blend-mode'] = 'normal';
-        var layer_Concrete_1 = new L.geoJson(json_Concrete_1, {
+        map.createPane('pane_ProposedConcreteStructures_1');
+        map.getPane('pane_ProposedConcreteStructures_1').style.zIndex = 401;
+        map.getPane('pane_ProposedConcreteStructures_1').style['mix-blend-mode'] = 'normal';
+        var layer_ProposedConcreteStructures_1 = new L.geoJson(json_ProposedConcreteStructures_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Concrete_1',
-            layerName: 'layer_Concrete_1',
-            pane: 'pane_Concrete_1',
-            onEachFeature: pop_Concrete_1,
-            style: style_Concrete_1_0,
+            dataVar: 'json_ProposedConcreteStructures_1',
+            layerName: 'layer_ProposedConcreteStructures_1',
+            pane: 'pane_ProposedConcreteStructures_1',
+            onEachFeature: pop_ProposedConcreteStructures_1,
+            style: style_ProposedConcreteStructures_1_0,
         });
-        bounds_group.addLayer(layer_Concrete_1);
-        map.addLayer(layer_Concrete_1);
+        bounds_group.addLayer(layer_ProposedConcreteStructures_1);
+        map.addLayer(layer_ProposedConcreteStructures_1);
         function pop_ProposedPipeline_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -252,7 +253,7 @@
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
-                weight: 8.0,
+                weight: 4.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -322,7 +323,7 @@
                 dashArray: '',
                 lineCap: 'round',
                 lineJoin: 'round',
-                weight: 8.0,
+                weight: 4.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -411,11 +412,68 @@
         });
         bounds_group.addLayer(layer_Workspace_4);
         map.addLayer(layer_Workspace_4);
+        function pop_WELLPADS_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">WELL NAME</th>\
+                        <td class="visible-with-data" id="WELL NAME">' + (feature.properties['WELL NAME'] !== null ? autolinker.link(String(feature.properties['WELL NAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COMMENTS'] !== null ? autolinker.link(String(feature.properties['COMMENTS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_WELLPADS_5_0() {
+            return {
+                pane: 'pane_WELLPADS_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,158,23,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_WELLPADS_5');
+        map.getPane('pane_WELLPADS_5').style.zIndex = 405;
+        map.getPane('pane_WELLPADS_5').style['mix-blend-mode'] = 'normal';
+        var layer_WELLPADS_5 = new L.geoJson(json_WELLPADS_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_WELLPADS_5',
+            layerName: 'layer_WELLPADS_5',
+            pane: 'pane_WELLPADS_5',
+            onEachFeature: pop_WELLPADS_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_WELLPADS_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_WELLPADS_5);
+        map.addLayer(layer_WELLPADS_5);
         var overlaysTree = [
+            {label: '<img src="legend/WELLPADS_5.png" /> WELL PADS', layer: layer_WELLPADS_5},
             {label: '<img src="legend/Workspace_4.png" /> Workspace', layer: layer_Workspace_4},
             {label: '<img src="legend/AbandonedPipeline_3.png" /> Abandoned Pipeline', layer: layer_AbandonedPipeline_3},
             {label: '<img src="legend/ProposedPipeline_2.png" /> Proposed Pipeline', layer: layer_ProposedPipeline_2},
-            {label: '<img src="legend/Concrete_1.png" /> Concrete', layer: layer_Concrete_1},
+            {label: '<img src="legend/ProposedConcreteStructures_1.png" /> Proposed Concrete Structures', layer: layer_ProposedConcreteStructures_1},
             {label: "ESRI Satellite", layer: layer_ESRISatellite_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
@@ -478,6 +536,29 @@
             }  
         });       
         setBounds();
+        var i = 0;
+        layer_WELLPADS_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['WELL NAME'] !== null?String('<div style="color: #050404; font-size: 15pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELL NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WELLPADS_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_WELLPADS_5]);
+        map.on("zoomend", function(){
+            resetLabels([layer_WELLPADS_5]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_WELLPADS_5]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_WELLPADS_5]);
+        });
         </script>        
     </body>
 </html>
