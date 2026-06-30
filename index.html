@@ -64,7 +64,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.723879650953876,-85.8253087032959],[42.73062353500396,-85.81545353040799]]);
+        }).fitBounds([[42.72727816474525,-85.82657824324252],[42.729684385806856,-85.82165065679857]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -519,8 +519,8 @@
                     <tr>\
                         <th scope="row">STATUS</th>\
                         <td class="visible-with-data" id="STATUS">' + (feature.properties['STATUS'] !== null ? autolinker.link(String(feature.properties['STATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                     <tr>\
-<tr>\
 <th scope="row">PHOTO</th>\
 <td class="visible-with-data" id="PHOTO">' + 
 (feature.properties['PHOTO'] ? 
@@ -682,7 +682,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['COMMENTS'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['COMMENTS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SurveyPoints_7'});
+            layer.bindTooltip((layer.feature.properties['WELD_NUM'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELD_NUM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SurveyPoints_7'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
