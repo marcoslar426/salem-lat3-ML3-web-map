@@ -64,7 +64,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.72849920747009,-85.82554329226153],[42.72879998510279,-85.82492734395603]]);
+        }).fitBounds([[42.725696647293205,-85.82673315150777],[42.730509089416415,-85.81687797861986]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -520,7 +520,7 @@
                         <th scope="row">STATUS</th>\
                         <td class="visible-with-data" id="STATUS">' + (feature.properties['STATUS'] !== null ? autolinker.link(String(feature.properties['STATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
+               <tr>\
 <th scope="row">PHOTO</th>\
 <td class="visible-with-data" id="PHOTO">' + 
 (feature.properties['PHOTO'] ? 
