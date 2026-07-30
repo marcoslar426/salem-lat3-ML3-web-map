@@ -64,7 +64,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.72777881411534,-85.82095091560291],[42.73003464636504,-85.8163313033026]]);
+        }).fitBounds([[42.72852571256152,-85.82160184603224],[42.72908967062395,-85.82044694295716]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -501,8 +501,7 @@
                         <td class="visible-with-data" id="FINAL_GRADE_COVER">' + (feature.properties['FINAL_GRADE_COVER'] !== null ? autolinker.link(String(feature.properties['FINAL_GRADE_COVER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">MANUFACTURER</th>\
-                        <td class="visible-with-data" id="MANUFACTURER">' + (feature.properties['MANUFACTURER'] !== null ? autolinker.link(String(feature.properties['MANUFACTURER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="MANUFACTURER" colspan="2"><strong>MANUFACTURER</strong><br />' + (feature.properties['MANUFACTURER'] !== null ? autolinker.link(String(feature.properties['MANUFACTURER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">DIAMETER</th>\
@@ -520,7 +519,7 @@
                         <th scope="row">STATUS</th>\
                         <td class="visible-with-data" id="STATUS">' + (feature.properties['STATUS'] !== null ? autolinker.link(String(feature.properties['STATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                  <tr>\
+                    <tr>\
 <th scope="row">PHOTO</th>\
 <td class="visible-with-data" id="PHOTO">' + 
 (feature.properties['PHOTO'] ? 
