@@ -66,7 +66,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.728539212060966,-85.82087419549822],[42.72855703868987,-85.82083810477712]]);
+        }).fitBounds([[42.72866761914923,-85.82125671459012],[42.728960894536165,-85.82067926305258]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -193,7 +193,7 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(109,109,109,1.0)',
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_ProposedConcreteStructures_1');
@@ -201,7 +201,7 @@
         map.getPane('pane_ProposedConcreteStructures_1').style['mix-blend-mode'] = 'normal';
         var layer_ProposedConcreteStructures_1 = new L.geoJson(json_ProposedConcreteStructures_1, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_ProposedConcreteStructures_1',
             layerName: 'layer_ProposedConcreteStructures_1',
             pane: 'pane_ProposedConcreteStructures_1',
@@ -240,7 +240,7 @@
                 lineJoin: 'bevel',
                 weight: 4.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_ProposedPipeline_2');
@@ -248,7 +248,7 @@
         map.getPane('pane_ProposedPipeline_2').style['mix-blend-mode'] = 'normal';
         var layer_ProposedPipeline_2 = new L.geoJson(json_ProposedPipeline_2, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_ProposedPipeline_2',
             layerName: 'layer_ProposedPipeline_2',
             pane: 'pane_ProposedPipeline_2',
@@ -287,7 +287,7 @@
                 lineJoin: 'round',
                 weight: 4.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_AbandonedPipeline_3');
@@ -295,7 +295,7 @@
         map.getPane('pane_AbandonedPipeline_3').style['mix-blend-mode'] = 'normal';
         var layer_AbandonedPipeline_3 = new L.geoJson(json_AbandonedPipeline_3, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_AbandonedPipeline_3',
             layerName: 'layer_AbandonedPipeline_3',
             pane: 'pane_AbandonedPipeline_3',
@@ -338,7 +338,7 @@
                 lineJoin: 'bevel',
                 weight: 4.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_UtilityCrossings_4');
@@ -346,7 +346,7 @@
         map.getPane('pane_UtilityCrossings_4').style['mix-blend-mode'] = 'normal';
         var layer_UtilityCrossings_4 = new L.geoJson(json_UtilityCrossings_4, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_UtilityCrossings_4',
             layerName: 'layer_UtilityCrossings_4',
             pane: 'pane_UtilityCrossings_4',
@@ -435,7 +435,7 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(255,158,23,1.0)',
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_WellPads_6');
@@ -443,7 +443,7 @@
         map.getPane('pane_WellPads_6').style['mix-blend-mode'] = 'normal';
         var layer_WellPads_6 = new L.geoJson(json_WellPads_6, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_WellPads_6',
             layerName: 'layer_WellPads_6',
             pane: 'pane_WellPads_6',
@@ -521,7 +521,7 @@
                         <th scope="row">STATUS</th>\
                         <td class="visible-with-data" id="STATUS">' + (feature.properties['STATUS'] !== null ? autolinker.link(String(feature.properties['STATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
+<tr>\
 <th scope="row">PHOTO</th>\
 <td class="visible-with-data" id="PHOTO">' + 
 (feature.properties['PHOTO'] ? 
