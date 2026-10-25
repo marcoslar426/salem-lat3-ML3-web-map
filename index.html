@@ -45,9 +45,10 @@
         <script src="data/ProposedPipeline_2.js"></script>
         <script src="data/AbandonedPipeline_3.js"></script>
         <script src="data/UtilityCrossings_4.js"></script>
-        <script src="data/Workspace_5.js"></script>
-        <script src="data/WellPads_6.js"></script>
-        <script src="data/SurveyPoints_7.js"></script>
+        <script src="data/ActualPipeline_5.js"></script>
+        <script src="data/Workspace_6.js"></script>
+        <script src="data/WellPads_7.js"></script>
+        <script src="data/SurveyPoints_8.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -66,7 +67,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.72407737704036,-85.82373634945633],[42.72750008979013,-85.81680693100587]]);
+        }).fitBounds([[42.722531586874354,-85.8290184643263],[42.72937701234514,-85.8151596274836]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -234,11 +235,11 @@
             return {
                 pane: 'pane_ProposedPipeline_2',
                 opacity: 1,
-                color: 'rgba(31,120,180,1.0)',
-                dashArray: '',
+                color: 'rgba(255,166,0,1.0)',
+                dashArray: '8.0,4.0',
                 lineCap: 'square',
                 lineJoin: 'bevel',
-                weight: 4.0,
+                weight: 2.0,
                 fillOpacity: 0,
                 interactive: false,
             }
@@ -281,7 +282,7 @@
             return {
                 pane: 'pane_AbandonedPipeline_3',
                 opacity: 1,
-                color: 'rgba(219,30,42,1.0)',
+                color: 'rgba(88,88,88,1.0)',
                 dashArray: '',
                 lineCap: 'round',
                 lineJoin: 'round',
@@ -332,7 +333,7 @@
             return {
                 pane: 'pane_UtilityCrossings_4',
                 opacity: 1,
-                color: 'rgba(255,127,0,1.0)',
+                color: 'rgba(239,251,65,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -355,7 +356,57 @@
         });
         bounds_group.addLayer(layer_UtilityCrossings_4);
         map.addLayer(layer_UtilityCrossings_4);
-        function pop_Workspace_5(feature, layer) {
+        function pop_ActualPipeline_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_ActualPipeline_5_0() {
+            return {
+                pane: 'pane_ActualPipeline_5',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ActualPipeline_5');
+        map.getPane('pane_ActualPipeline_5').style.zIndex = 405;
+        map.getPane('pane_ActualPipeline_5').style['mix-blend-mode'] = 'normal';
+        var layer_ActualPipeline_5 = new L.geoJson(json_ActualPipeline_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ActualPipeline_5',
+            layerName: 'layer_ActualPipeline_5',
+            pane: 'pane_ActualPipeline_5',
+            onEachFeature: pop_ActualPipeline_5,
+            style: style_ActualPipeline_5_0,
+        });
+        bounds_group.addLayer(layer_ActualPipeline_5);
+        map.addLayer(layer_ActualPipeline_5);
+        function pop_Workspace_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -375,9 +426,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Workspace_5_0() {
+        function style_Workspace_6_0() {
             return {
-                pane: 'pane_Workspace_5',
+                pane: 'pane_Workspace_6',
                 opacity: 1,
                 color: 'rgba(255,216,77,1.0)',
                 dashArray: '',
@@ -388,21 +439,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Workspace_5');
-        map.getPane('pane_Workspace_5').style.zIndex = 405;
-        map.getPane('pane_Workspace_5').style['mix-blend-mode'] = 'normal';
-        var layer_Workspace_5 = new L.geoJson(json_Workspace_5, {
+        map.createPane('pane_Workspace_6');
+        map.getPane('pane_Workspace_6').style.zIndex = 406;
+        map.getPane('pane_Workspace_6').style['mix-blend-mode'] = 'normal';
+        var layer_Workspace_6 = new L.geoJson(json_Workspace_6, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_Workspace_5',
-            layerName: 'layer_Workspace_5',
-            pane: 'pane_Workspace_5',
-            onEachFeature: pop_Workspace_5,
-            style: style_Workspace_5_0,
+            dataVar: 'json_Workspace_6',
+            layerName: 'layer_Workspace_6',
+            pane: 'pane_Workspace_6',
+            onEachFeature: pop_Workspace_6,
+            style: style_Workspace_6_0,
         });
-        bounds_group.addLayer(layer_Workspace_5);
-        map.addLayer(layer_Workspace_5);
-        function pop_WellPads_6(feature, layer) {
+        bounds_group.addLayer(layer_Workspace_6);
+        map.addLayer(layer_Workspace_6);
+        function pop_WellPads_7(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -422,9 +473,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_WellPads_6_0() {
+        function style_WellPads_7_0() {
             return {
-                pane: 'pane_WellPads_6',
+                pane: 'pane_WellPads_7',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -438,27 +489,27 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_WellPads_6');
-        map.getPane('pane_WellPads_6').style.zIndex = 406;
-        map.getPane('pane_WellPads_6').style['mix-blend-mode'] = 'normal';
-        var layer_WellPads_6 = new L.geoJson(json_WellPads_6, {
+        map.createPane('pane_WellPads_7');
+        map.getPane('pane_WellPads_7').style.zIndex = 407;
+        map.getPane('pane_WellPads_7').style['mix-blend-mode'] = 'normal';
+        var layer_WellPads_7 = new L.geoJson(json_WellPads_7, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_WellPads_6',
-            layerName: 'layer_WellPads_6',
-            pane: 'pane_WellPads_6',
-            onEachFeature: pop_WellPads_6,
+            dataVar: 'json_WellPads_7',
+            layerName: 'layer_WellPads_7',
+            pane: 'pane_WellPads_7',
+            onEachFeature: pop_WellPads_7,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_WellPads_6_0(feature));
+                return L.circleMarker(latlng, style_WellPads_7_0(feature));
             },
         });
-        bounds_group.addLayer(layer_WellPads_6);
-        map.addLayer(layer_WellPads_6);
-        function pop_SurveyPoints_7(feature, layer) {
+        bounds_group.addLayer(layer_WellPads_7);
+        map.addLayer(layer_WellPads_7);
+        function pop_SurveyPoints_8(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -503,7 +554,7 @@
                         <td class="visible-with-data" id="FINAL_GRADE_COVER">' + (feature.properties['FINAL_GRADE_COVER'] !== null ? autolinker.link(String(feature.properties['FINAL_GRADE_COVER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="MANUFACTURER" colspan="2"><strong>MANUFACTURER</strong><br />' + (feature.properties['MANUFACTURER'] !== null ? autolinker.link(String(feature.properties['MANUFACTURER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['ELEVATION'] !== null ? autolinker.link(String(feature.properties['ELEVATION']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">DIAMETER</th>\
@@ -521,7 +572,7 @@
                         <th scope="row">STATUS</th>\
                         <td class="visible-with-data" id="STATUS">' + (feature.properties['STATUS'] !== null ? autolinker.link(String(feature.properties['STATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                  <tr>\
+                   <tr>\
 <th scope="row">PHOTO</th>\
 <td class="visible-with-data" id="PHOTO">' + 
 (feature.properties['PHOTO'] ? 
@@ -545,9 +596,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_SurveyPoints_7_0() {
+        function style_SurveyPoints_8_0() {
             return {
-                pane: 'pane_SurveyPoints_7',
+                pane: 'pane_SurveyPoints_8',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -561,30 +612,31 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_SurveyPoints_7');
-        map.getPane('pane_SurveyPoints_7').style.zIndex = 407;
-        map.getPane('pane_SurveyPoints_7').style['mix-blend-mode'] = 'normal';
-        var layer_SurveyPoints_7 = new L.geoJson(json_SurveyPoints_7, {
+        map.createPane('pane_SurveyPoints_8');
+        map.getPane('pane_SurveyPoints_8').style.zIndex = 408;
+        map.getPane('pane_SurveyPoints_8').style['mix-blend-mode'] = 'normal';
+        var layer_SurveyPoints_8 = new L.geoJson(json_SurveyPoints_8, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SurveyPoints_7',
-            layerName: 'layer_SurveyPoints_7',
-            pane: 'pane_SurveyPoints_7',
-            onEachFeature: pop_SurveyPoints_7,
+            dataVar: 'json_SurveyPoints_8',
+            layerName: 'layer_SurveyPoints_8',
+            pane: 'pane_SurveyPoints_8',
+            onEachFeature: pop_SurveyPoints_8,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_SurveyPoints_7_0(feature));
+                return L.circleMarker(latlng, style_SurveyPoints_8_0(feature));
             },
         });
-        bounds_group.addLayer(layer_SurveyPoints_7);
-        map.addLayer(layer_SurveyPoints_7);
+        bounds_group.addLayer(layer_SurveyPoints_8);
+        map.addLayer(layer_SurveyPoints_8);
         var overlaysTree = [
-            {label: '<img src="legend/SurveyPoints_7.png" /> Survey Points', layer: layer_SurveyPoints_7},
-            {label: '<img src="legend/WellPads_6.png" /> Well Pads', layer: layer_WellPads_6},
-            {label: '<img src="legend/Workspace_5.png" /> Workspace', layer: layer_Workspace_5},
+            {label: '<img src="legend/SurveyPoints_8.png" /> Survey Points', layer: layer_SurveyPoints_8},
+            {label: '<img src="legend/WellPads_7.png" /> Well Pads', layer: layer_WellPads_7},
+            {label: '<img src="legend/Workspace_6.png" /> Workspace', layer: layer_Workspace_6},
+            {label: '<img src="legend/ActualPipeline_5.png" /> Actual Pipeline', layer: layer_ActualPipeline_5},
             {label: '<img src="legend/UtilityCrossings_4.png" /> Utility Crossings', layer: layer_UtilityCrossings_4},
             {label: '<img src="legend/AbandonedPipeline_3.png" /> Abandoned Pipeline', layer: layer_AbandonedPipeline_3},
             {label: '<img src="legend/ProposedPipeline_2.png" /> Proposed Pipeline', layer: layer_ProposedPipeline_2},
@@ -665,12 +717,12 @@
               i++;
         });
         var i = 0;
-        layer_WellPads_6.eachLayer(function(layer) {
+        layer_WellPads_7.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['WELL NAME'] !== null?String('<div style="color: #050404; font-size: 15pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELL NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WellPads_6'});
+            layer.bindTooltip((layer.feature.properties['WELL NAME'] !== null?String('<div style="color: #050404; font-size: 15pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELL NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WellPads_7'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -678,12 +730,12 @@
               i++;
         });
         var i = 0;
-        layer_SurveyPoints_7.eachLayer(function(layer) {
+        layer_SurveyPoints_8.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['WELD_NUM'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELD_NUM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SurveyPoints_7'});
+            layer.bindTooltip((layer.feature.properties['WELD_NUM'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['WELD_NUM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SurveyPoints_8'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -691,7 +743,7 @@
               i++;
         });
         map.addControl(new L.Control.Search({
-            layer: layer_SurveyPoints_7,
+            layer: layer_SurveyPoints_8,
             initial: false,
             hideMarkerOnCollapse: true,
             propertyName: 'WELD_NUM'}));
@@ -700,15 +752,15 @@
         } else {
             document.getElementsByClassName('search-button')[1].className += ' fa fa-binoculars';
         }
-        resetLabels([layer_UtilityCrossings_4,layer_WellPads_6,layer_SurveyPoints_7]);
+        resetLabels([layer_UtilityCrossings_4,layer_WellPads_7,layer_SurveyPoints_8]);
         map.on("zoomend", function(){
-            resetLabels([layer_UtilityCrossings_4,layer_WellPads_6,layer_SurveyPoints_7]);
+            resetLabels([layer_UtilityCrossings_4,layer_WellPads_7,layer_SurveyPoints_8]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_UtilityCrossings_4,layer_WellPads_6,layer_SurveyPoints_7]);
+            resetLabels([layer_UtilityCrossings_4,layer_WellPads_7,layer_SurveyPoints_8]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_UtilityCrossings_4,layer_WellPads_6,layer_SurveyPoints_7]);
+            resetLabels([layer_UtilityCrossings_4,layer_WellPads_7,layer_SurveyPoints_8]);
         });
         </script>        
     </body>
