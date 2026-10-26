@@ -45,7 +45,7 @@
         <script src="data/ProposedPipeline_2.js"></script>
         <script src="data/AbandonedPipeline_3.js"></script>
         <script src="data/UtilityCrossings_4.js"></script>
-        <script src="data/ActualPipeline_5.js"></script>
+        <script src="data/ExistingPipeline_5.js"></script>
         <script src="data/Workspace_6.js"></script>
         <script src="data/WellPads_7.js"></script>
         <script src="data/SurveyPoints_8.js"></script>
@@ -67,7 +67,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[42.722531586874354,-85.8290184643263],[42.72937701234514,-85.8151596274836]]);
+        }).fitBounds([[42.72094674488846,-85.82153370813896],[42.72180242307231,-85.81980135353362]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -356,7 +356,7 @@
         });
         bounds_group.addLayer(layer_UtilityCrossings_4);
         map.addLayer(layer_UtilityCrossings_4);
-        function pop_ActualPipeline_5(feature, layer) {
+        function pop_ExistingPipeline_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -379,9 +379,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_ActualPipeline_5_0() {
+        function style_ExistingPipeline_5_0() {
             return {
-                pane: 'pane_ActualPipeline_5',
+                pane: 'pane_ExistingPipeline_5',
                 opacity: 1,
                 color: 'rgba(227,26,28,1.0)',
                 dashArray: '',
@@ -392,20 +392,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_ActualPipeline_5');
-        map.getPane('pane_ActualPipeline_5').style.zIndex = 405;
-        map.getPane('pane_ActualPipeline_5').style['mix-blend-mode'] = 'normal';
-        var layer_ActualPipeline_5 = new L.geoJson(json_ActualPipeline_5, {
+        map.createPane('pane_ExistingPipeline_5');
+        map.getPane('pane_ExistingPipeline_5').style.zIndex = 405;
+        map.getPane('pane_ExistingPipeline_5').style['mix-blend-mode'] = 'normal';
+        var layer_ExistingPipeline_5 = new L.geoJson(json_ExistingPipeline_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_ActualPipeline_5',
-            layerName: 'layer_ActualPipeline_5',
-            pane: 'pane_ActualPipeline_5',
-            onEachFeature: pop_ActualPipeline_5,
-            style: style_ActualPipeline_5_0,
+            dataVar: 'json_ExistingPipeline_5',
+            layerName: 'layer_ExistingPipeline_5',
+            pane: 'pane_ExistingPipeline_5',
+            onEachFeature: pop_ExistingPipeline_5,
+            style: style_ExistingPipeline_5_0,
         });
-        bounds_group.addLayer(layer_ActualPipeline_5);
-        map.addLayer(layer_ActualPipeline_5);
+        bounds_group.addLayer(layer_ExistingPipeline_5);
+        map.addLayer(layer_ExistingPipeline_5);
         function pop_Workspace_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -554,7 +554,8 @@
                         <td class="visible-with-data" id="FINAL_GRADE_COVER">' + (feature.properties['FINAL_GRADE_COVER'] !== null ? autolinker.link(String(feature.properties['FINAL_GRADE_COVER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ELEVATION'] !== null ? autolinker.link(String(feature.properties['ELEVATION']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">ELEVATION</th>\
+                        <td class="visible-with-data" id="ELEVATION">' + (feature.properties['ELEVATION'] !== null ? autolinker.link(String(feature.properties['ELEVATION']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">DIAMETER</th>\
@@ -636,7 +637,7 @@
             {label: '<img src="legend/SurveyPoints_8.png" /> Survey Points', layer: layer_SurveyPoints_8},
             {label: '<img src="legend/WellPads_7.png" /> Well Pads', layer: layer_WellPads_7},
             {label: '<img src="legend/Workspace_6.png" /> Workspace', layer: layer_Workspace_6},
-            {label: '<img src="legend/ActualPipeline_5.png" /> Actual Pipeline', layer: layer_ActualPipeline_5},
+            {label: '<img src="legend/ExistingPipeline_5.png" /> Existing Pipeline', layer: layer_ExistingPipeline_5},
             {label: '<img src="legend/UtilityCrossings_4.png" /> Utility Crossings', layer: layer_UtilityCrossings_4},
             {label: '<img src="legend/AbandonedPipeline_3.png" /> Abandoned Pipeline', layer: layer_AbandonedPipeline_3},
             {label: '<img src="legend/ProposedPipeline_2.png" /> Proposed Pipeline', layer: layer_ProposedPipeline_2},
